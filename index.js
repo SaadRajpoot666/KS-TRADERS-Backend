@@ -4,14 +4,13 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
 
-//importing route
-const checkoutRoute = require('./Routes/route')
 
 //configuring dotenv
 dotenv.config()
 
 //importing connectDB to connect to database
 const connectDB = require('./connection/db')
+const { postRequest, postData } = require('./controllers/controller')
 
 const PORT = process.env.PORT
 app.use(express.json()); // To parse JSON data
@@ -22,8 +21,8 @@ app.use(express.json())
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json())
 
-app.use('/',checkoutRoute) // using check out route
-
+app.use("/checkout",postRequest)
+app.use("/contact",postData)
 
 
 // calling the connectDB function 

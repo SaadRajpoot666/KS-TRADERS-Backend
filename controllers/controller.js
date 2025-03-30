@@ -1,7 +1,6 @@
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
-const data = require("../models/model");
-dotenv.config();
+ dotenv.config();
 //creating a transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -153,15 +152,7 @@ const postData = async (req, res) => {
     console.log(`Email sent: ${info2.response}`);
     // **DEBUGGING: Log before saving data**
     console.log(" Attempting to save data to the database...");
-
-    // Save data to MongoDB
-    const newUser = new data({ name, email, password, phone, message });
-    res.status(200).json({
-      success: true,
-      message: "Email has been sent and user saved!",
-      user: newUser,
-    });
-    await newUser.save();
+ 
 
     // **DEBUGGING: Log after saving**
     console.log("✅ Data successfully saved in the database!");
