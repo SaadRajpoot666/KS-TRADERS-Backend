@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true })); // To parse form data
 
 app.use(express.json())
 //implementing cors and bodyparser
-app.use(cors())
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json())
 
 app.use('/',checkoutRoute) // using check out route
@@ -28,7 +28,8 @@ app.use('/',checkoutRoute) // using check out route
 
 // calling the connectDB function 
 
-connectDB()
+connectDB().catch(err => console.error("MongoDB Connection Error:", err));
+
 
 
 
