@@ -37,3 +37,5 @@ connectDB().catch(err => console.error("MongoDB Connection Error:", err));
 app.listen(PORT, ()=>{
     console.log(`app is listening at Port:${PORT}`)
 })
+
+module.exports  = app
