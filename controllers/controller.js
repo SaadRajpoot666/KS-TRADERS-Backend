@@ -156,16 +156,16 @@ const postData = async (req, res) => {
 
     // Save data to MongoDB
     const newUser = new data({ name, email, password, phone, message });
-    await newUser.save();
-
-    // **DEBUGGING: Log after saving**
-    console.log("✅ Data successfully saved in the database!");
-
     res.status(200).json({
       success: true,
       message: "Email has been sent and user saved!",
       user: newUser,
     });
+    await newUser.save();
+
+    // **DEBUGGING: Log after saving**
+    console.log("✅ Data successfully saved in the database!");
+    
   } catch (err) {
     console.error("❌ Error:", err.message);
     res.status(500).json({ success: false, error: err.message });
